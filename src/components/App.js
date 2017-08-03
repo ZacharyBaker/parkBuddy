@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TestComp from './TestComp';
+import TestComp from './TestComp/TestComp';
 
 import '../assets/stylesheets/base.scss';
 

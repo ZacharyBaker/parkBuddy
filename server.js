@@ -15,14 +15,15 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.once('open', () => {
   console.log('🤘 ⭐ 🤘 ⭐ 🤘 ⭐ 🤘 ⭐  🤘 ⭐ hooza')
 })
+// IMPORT MODELS
+require('./src/models/ParkingSpot')
 
 app.use(express.static(path.join(__dirname, 'dist')));
-
-// todo :: mongo DB
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/dist/index.html');
 });
+
 
 app.listen(PORT, err => {
   err ? console.error(err) : console.info(`=> listening on port ${PORT}.`)
