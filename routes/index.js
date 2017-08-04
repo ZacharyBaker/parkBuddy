@@ -26,10 +26,21 @@ async function updateSpot(req, res) {
   }
 }
 
+async function getSpot(req, res) {
+  try {
+    const spot = await ParkingSpot.find();
+    res.send(spot)
+  } catch(err) {
+    console.error
+  }
+}
+
 
 router.get('/', function(req, res){
   res.sendFile(__dirname + '/dist/index.html');
 });
+
+router.get('/spot', getSpot)
 /////////
 ///api///
 /////////
