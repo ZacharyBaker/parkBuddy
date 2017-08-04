@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
+const bodyParser = require('body-parser');
 
 // sensitive info
 require('dotenv').config({ path: 'variables.env' });
@@ -18,12 +18,12 @@ mongoose.connection.once('open', () => {
 // IMPORT MODELS
 require('./src/models/ParkingSpot')
 
+const routes = require('./routes/index')
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/dist/index.html');
-});
-
+app.use('/', routes);
 
 app.listen(PORT, err => {
   err ? console.error(err) : console.info(`=> listening on port ${PORT}.`)
