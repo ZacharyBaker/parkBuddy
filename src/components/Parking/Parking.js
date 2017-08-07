@@ -27,10 +27,14 @@ export default class Parking extends React.Component {
     });
   }
 
+  handleClick() {
+    console.log('i am handling the click')
+  }
+
   render(){
     return (
       <div className="parkingWrap">
-        here is the spot: {this.state.spots.map((spot, i) => <h1 key={i} onClick={() => console.log('hi')}>{spot}</h1>)}
+        here is the spot: {this.state.spots.map((spot, i) => <h1 key={i} onClick={this.handleClick.bind(this)}>{spot}</h1>)}
       </div>
     )
   }
