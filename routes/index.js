@@ -44,9 +44,9 @@ router.get('/spot', getSpot)
 /////////
 ///api///
 /////////
-router.post('/', (req, res) => {
-  res.json(req.body)
-})
+// router.post('/', (req, res) => {
+//   res.json(req.body)
+// })
 router.post('/api/update', updateSpot)
 
 

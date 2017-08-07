@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './TestComp.scss';
+import './Parking.scss';
 import axios from 'axios';
 
-export default class TestComp extends React.Component {
+export default class Parking extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props)
     this.state = {
-      spot: []
+      spots: []
     }
   }
 
   componentDidMount() {
     axios.get('/spot')
     .then(response => {
-      let spot = response.data[0].spot;
+      let spots = response.data[0].spot;
 
       this.setState({
-        spot
+        spots
       })
 
     })
@@ -28,9 +29,8 @@ export default class TestComp extends React.Component {
 
   render(){
     return (
-      <div className="dude">
-        Hey I'm a dude!<br/>
-        here is the spot: {this.state.spot.map((dude, i) => <h1 key={i}>{dude}</h1>)}
+      <div className="parkingWrap">
+        here is the spot: {this.state.spots.map((spot, i) => <h1 key={i} onClick={() => console.log('hi')}>{spot}</h1>)}
       </div>
     )
   }
