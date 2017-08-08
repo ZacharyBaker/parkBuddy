@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Parking.scss';
+import Modal from '../Modal/Modal'
 import axios from 'axios';
 
 export default class Parking extends React.Component {
@@ -8,7 +9,9 @@ export default class Parking extends React.Component {
     super(props);
     console.log(this.props)
     this.state = {
-      spots: []
+      spots: [],
+      currentUser: false,
+      showModal: false
     }
   }
 
@@ -27,14 +30,22 @@ export default class Parking extends React.Component {
     });
   }
 
-  handleClick() {
-    console.log('i am handling the click')
+  handleClick(e) {
+    console.log(e.target, 'EVENT')
+    console.log('handling the click')
+    if (!this.state.currentUser) {
+      this.setState({showModal: true});
+      return;
+    }
   }
 
   render(){
     return (
       <div className="parkingWrap">
         here is the spot: {this.state.spots.map((spot, i) => <h1 key={i} onClick={this.handleClick.bind(this)}>{spot}</h1>)}
+        {this.state.showModal && 
+          <Modal />
+        }
       </div>
     )
   }
