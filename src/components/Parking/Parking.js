@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './Parking.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './Parking.scss'
 import Modal from '../Modal/Modal'
-import axios from 'axios';
+import axios from 'axios'
+import * as secrets from './secrets'
 
 export default class Parking extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     console.log(this.props)
     this.state = {
       spots: [],
-      currentUser: false,
       showModal: false,
       password: '',
       value: '',
@@ -23,14 +23,14 @@ export default class Parking extends React.Component {
   componentDidMount() {
     axios.get('/spot')
     .then(response => {
-      let spots = response.data[0].spot;
+      let spots = response.data[0].spot
       this.setState({
         spots
       })
     })
     .catch(error => {
-      console.log(error);
-    });
+      console.log(error)
+    })
   }
 
 
@@ -52,22 +52,54 @@ export default class Parking extends React.Component {
 
 
   handleClick(e, i) {
-    if (!this.state.currentUser) {
-      this.setState({showModal: true});
-      this.clickedOn(i);
-      return;
-    }
+    console.log('this.state.spots', this.state.spots)
+      this.setState({showModal: true})
+      this.clickedOn(i)
+      return
   }
 
   clickedOn(i) {
-    console.log(i, 'clickedON')
+    this.setState({ clickedOn: i })
   }
 
   handleModalSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
       value: '',
       showModal: false
+    })
+    let currentUser = false
+    switch (this.state.password) {
+      case secrets.jaden.pass:
+        currentUser = 'Jaden'
+        break
+      case secrets.vlad.pass:
+        currentUser = 'Vlad'
+        break
+      case secrets.zach.pass:
+        currentUser = 'Zach'
+        break
+      default:
+        alert('🐒💩🐒💩🐒💩🐒💩Wrong Password🐒💩🐒💩🐒💩🐒💩')
+    }
+    if (currentUser) {
+      this.updateSpots(currentUser)
+    }
+  }
+
+  updateSpots(currentUser) {
+    const { clickedOn, spots } = this.state
+    spots[clickedOn] = currentUser
+    this.setState({spots})
+    axios.post('/api/update', {spot: spots})
+    .then(response => {
+      console.log('response', response)
+      // this.setState({
+      //   spots
+      // })
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 
