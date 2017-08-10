@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Parking.scss'
 import Modal from '../Modal/Modal'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import axios from 'axios'
 import * as secrets from './secrets'
 
@@ -37,13 +38,21 @@ export default class Parking extends React.Component {
   render(){
     return (
       <div className="parkingWrap">
-        here is the spot: {this.state.spots.map((spot, i) => <h1 key={i} onClick={(e) => this.handleClick(e, i)}>{spot}</h1>)}
+        {this.state.spots.map((spot, i) => <h1 key={i} onClick={(e) => this.handleClick(e, i)}>{spot}</h1>)}
         {this.state.showModal && 
-          <Modal
-            handleSubmit={this.handleModalSubmit.bind(this)}
-            handleChange={this.handleModalChange.bind(this)}
-            value={this.state.value}
-          />
+          <ReactCSSTransitionGroup transitionName="example"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnter={false}
+            transitionLeave={false}>
+            <Modal
+              key="1"
+              handleSubmit={this.handleModalSubmit.bind(this)}
+              handleChange={this.handleModalChange.bind(this)}
+              value={this.state.value}
+              show={this.state.showModal}
+            />
+          </ReactCSSTransitionGroup>
         }
       </div>
     )

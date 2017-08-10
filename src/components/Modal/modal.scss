@@ -1,3 +1,17 @@
 .modalWrap {
-  border: 5px solid rebeccapurple
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  float: left;
+  border: solid 2px white;
+  box-sizing: border-box;
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
 }
