@@ -1,4 +1,23 @@
 .parkingWrap {
   font-family: helvetica;
   font-weight: 200;
+  margin-top: 80px;
+  .spotContainer {
+    max-width: 200px;
+    margin: 20px auto;
+    h1 {
+      border: 20px solid #F7D418;
+      margin: 0px;
+      height: 100px;
+      line-height: 100px;
+      &:last-child {
+        border-bottom: none;
+        border-top: 10px solid #F7D418;
+      }
+      &:first-child {
+        border-top: none;
+        border-bottom: 10px solid #F7D418;
+      }
+    }
+  }
 }

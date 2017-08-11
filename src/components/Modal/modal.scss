@@ -1,17 +1,78 @@
 .modalWrap {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  float: left;
-  border: solid 2px white;
+  width: 300px;
+  max-width: 100%;
+  height: 150px;
+  max-height: 100%;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
   box-sizing: border-box;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1010;
+  .formModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px 0;
+    overflow: auto;
+    label {
+      display: block;
+      border-bottom: 1px solid #dddddd;
+      border-bottom-width: 90%;
+      margin-bottom: 15px;
+      padding: 0 0 15px 20px;
+      text-align: left;
+    }
+    input[type=password] {
+      border: 1px solid #dddddd;
+      padding: 7px 12px;
+      display: block;
+      border-radius: 3px;
+      margin-left: 15px;
+      &:focus {
+        outline: none;
+      }
+    }
+    input[type=submit] {
+      display: block;
+      margin-left: 15px;
+      margin-top: 10px;
+      border: none;
+      font-size: 15px;
+      padding: 5px 8px;
+      border: 1px solid #dddddd;
+      border-radius: 3px;
+      background: none;
+      font-weight: 100;
+      font-family: helvetica;
+    }
+  }
 }
 
-.example-appear {
+.modalTransition-appear {
   opacity: 0.01;
+  // width: 0px;
+  // height: 0px;
 }
 
-.example-appear.example-appear-active {
+.modalTransition-appear.modalTransition-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  // width: 100px;
+  // height: 100px;
+  transition: .5s ease-in;
+}
+
+.modalOverlay {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.4);
 }

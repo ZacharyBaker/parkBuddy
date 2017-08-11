@@ -5,11 +5,11 @@ import './modal.scss'
 const Modal = (props) => {
   const componentClasses = ['modalWrap'];
   return (
-    <div className={componentClasses.join(' ')}>
-      <form onSubmit={props.handleSubmit}>
-        <label htmlFor="password">Secret password</label>
+    <div className="modalWrap">
+      <form className="formModal" onSubmit={props.handleSubmit}>
+        <label htmlFor="password">Password</label>
         <input type="password" onChange={props.handleChange} id="password" value={props.value}/>
-        <input type="submit"/>
+        <input type="submit" value="Send it"/>
       </form>
     </div>
   )

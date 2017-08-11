@@ -38,21 +38,31 @@ export default class Parking extends React.Component {
   render(){
     return (
       <div className="parkingWrap">
-        {this.state.spots.map((spot, i) => <h1 key={i} onClick={(e) => this.handleClick(e, i)}>{spot}</h1>)}
+        <div className="spotContainer">
+          {
+            this.state.spots.map((spot, i) => {
+              return (  
+                <h1 key={i} onClick={(e) => this.handleClick(e, i)}>{spot}</h1>)}
+              )
+          }
+        </div>
         {this.state.showModal && 
-          <ReactCSSTransitionGroup transitionName="example"
-            transitionAppear={true}
-            transitionAppearTimeout={500}
-            transitionEnter={false}
-            transitionLeave={false}>
-            <Modal
-              key="1"
-              handleSubmit={this.handleModalSubmit.bind(this)}
-              handleChange={this.handleModalChange.bind(this)}
-              value={this.state.value}
-              show={this.state.showModal}
-            />
-          </ReactCSSTransitionGroup>
+          <div>
+            <ReactCSSTransitionGroup transitionName="modalTransition"
+              transitionAppear={true}
+              transitionAppearTimeout={500}
+              transitionEnter={false}
+              transitionLeave={false}>
+              <Modal
+                key="1"
+                handleSubmit={this.handleModalSubmit.bind(this)}
+                handleChange={this.handleModalChange.bind(this)}
+                value={this.state.value}
+                show={this.state.showModal}
+              />
+            </ReactCSSTransitionGroup>
+            <div className="modalOverlay" />
+          </div>
         }
       </div>
     )
