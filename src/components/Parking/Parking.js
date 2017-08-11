@@ -4,6 +4,7 @@ import './Parking.scss'
 import Modal from '../Modal/Modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import axios from 'axios'
+import moment from 'moment'
 import * as secrets from './secrets'
 
 export default class Parking extends React.Component {
@@ -12,6 +13,7 @@ export default class Parking extends React.Component {
     console.log(this.props)
     this.state = {
       spots: [],
+      updatedAt: false,
       showModal: false,
       password: '',
       value: '',
@@ -24,9 +26,11 @@ export default class Parking extends React.Component {
   componentDidMount() {
     axios.get('/spot')
     .then(response => {
+      let updatedAt = moment(response.data[0].updatedAt).fromNow()
       let spots = response.data[0].spot
       this.setState({
-        spots
+        spots,
+        updatedAt
       })
     })
     .catch(error => {
@@ -46,6 +50,9 @@ export default class Parking extends React.Component {
               )
           }
         </div>
+        {this.state.updatedAt &&
+          <div className="lastUpdated">Last updated {this.state.updatedAt}</div>
+        }
         {this.state.showModal && 
           <div>
             <ReactCSSTransitionGroup transitionName="modalTransition"
