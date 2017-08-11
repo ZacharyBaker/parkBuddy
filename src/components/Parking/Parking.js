@@ -116,7 +116,11 @@ export default class Parking extends React.Component {
   updateSpots(currentUser) {
     const { clickedOn, spots } = this.state
     spots[clickedOn] = currentUser
-    this.setState({spots})
+    let updatedAt = 'a few seconds ago'
+    this.setState({
+      spots,
+      updatedAt
+    })
     axios.post('/api/update', {spot: spots})
     .then(response => {
       console.log('response', response)
