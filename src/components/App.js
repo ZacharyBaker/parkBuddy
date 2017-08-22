@@ -17,6 +17,6 @@ const App = (props) => {
 
 // App.propTypes = {
 //   name: PropTypes.string,
-// };
+// }; // i'm back!
 
 export default App;
