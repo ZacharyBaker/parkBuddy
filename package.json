@@ -12,6 +12,7 @@
     "lint": "eslint src/**",
     "lint:watch": "esw -w src/**",
     "start": "npm run build && NODE_ENV=production node server.js",
+    "postinstall": "npm run build",
     "startnode": "webpack --config webpack.config.js && node ./server.js",
     "test": "mocha --compilers js:babel-core/register ./test/**/*.spec.js --require ignore-styles"
   },
