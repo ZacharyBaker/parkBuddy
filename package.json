@@ -21,6 +21,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "8.0.0"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "babel-core": "^6.24.1",
