@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Parking.scss'
-import Modal from '../Modal/Modal'
+import Modal from '../Modal/modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import axios from 'axios'
 import moment from 'moment'
