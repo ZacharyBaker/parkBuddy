@@ -5,7 +5,7 @@ import Modal from '../Modal/modal'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import axios from 'axios'
 import moment from 'moment'
-import * as secrets from './secrets'
+// import * as secrets from './secrets'
 
 export default class Parking extends React.Component {
   constructor(props) {
@@ -96,13 +96,13 @@ export default class Parking extends React.Component {
     })
     let currentUser = false
     switch (this.state.password) {
-      case secrets.jaden.pass:
+      case process.env.JADEN:
         currentUser = 'Jaden'
         break
-      case secrets.vlad.pass:
+      case process.env.VLAD:
         currentUser = 'Vlad'
         break
-      case secrets.zach.pass:
+      case process.env.ZACH:
         currentUser = 'Zach'
         break
       default:
