@@ -95,6 +95,7 @@ export default class Parking extends React.Component {
       showModal: false
     })
     let currentUser = false
+    console.log(process.env)
     switch (this.state.password) {
       case process.env.JADEN:
         currentUser = 'Jaden'
