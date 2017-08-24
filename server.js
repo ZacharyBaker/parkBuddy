@@ -4,10 +4,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 // sensitive info
-require('dotenv').config({ path: 'variables.env' });
+if (process.env.NODE_ENV != 'production') {
+  require('dotenv').config({ path: 'variables.env' });
+}
+console.log(process.env.NODE_ENV,'ENVIRONMENTADFASFD')
 const PORT = process.env.PORT || 8080;
 // connect to db and handle bad connections
-console.log(process.env.ZACH, "procFAEF ENVIRONMENT")
+console.log(process.env.ZACH, "ZACH VALUE")
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
@@ -22,11 +25,7 @@ require('./src/models/ParkingSpot')
 const routes = require('./routes/index')
 const app = express();
 app.use(bodyParser.json());
-app.locals = {
-  ZACH: process.env.ZACH,
-  JADEN: process.env.JADEN,
-  VLAD: process.env.VLAD,
-}
+app.locals.zach = process.env.ZACH;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', routes);
