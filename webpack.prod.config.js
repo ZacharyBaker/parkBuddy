@@ -4,7 +4,10 @@ const webpack = require('webpack');
 config.plugins.push(
   new webpack.DefinePlugin({
     "process.env": {
-      "NODE_ENV": JSON.stringify("production")
+      "NODE_ENV": JSON.stringify("production"),
+      "ZACH": JSON.stringify(process.env.ZACH),
+      "VLAD": JSON.stringify(process.env.VLAD),
+      "JADEN": JSON.stringify(process.env.ZACH)
     }
   })
 );

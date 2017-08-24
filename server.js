@@ -25,7 +25,6 @@ require('./src/models/ParkingSpot')
 const routes = require('./routes/index')
 const app = express();
 app.use(bodyParser.json());
-app.locals.zach = process.env.ZACH;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', routes);

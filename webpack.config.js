@@ -34,6 +34,13 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        "ZACH": JSON.stringify(process.env.ZACH),
+        "VLAD": JSON.stringify(process.env.VLAD),
+        "JADEN": JSON.stringify(process.env.ZACH)
+      }
+    })
   ]
 };
