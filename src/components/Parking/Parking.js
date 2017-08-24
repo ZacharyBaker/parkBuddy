@@ -10,7 +10,6 @@ import moment from 'moment'
 export default class Parking extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
     this.state = {
       spots: [],
       updatedAt: false,
@@ -78,7 +77,6 @@ export default class Parking extends React.Component {
 
 
   handleClick(e, i) {
-    console.log('this.state.spots', this.state.spots)
       this.setState({showModal: true})
       this.clickedOn(i)
       return
@@ -95,7 +93,7 @@ export default class Parking extends React.Component {
       showModal: false
     })
     let currentUser = false
-    console.log(process.env)
+    console.log(process.env.ZACH, 'ASD;KAF')
     switch (this.state.password) {
       case process.env.JADEN:
         currentUser = 'Jaden'

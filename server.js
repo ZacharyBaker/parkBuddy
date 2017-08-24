@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config({ path: 'variables.env' });
 const PORT = process.env.PORT || 8080;
 // connect to db and handle bad connections
+console.log(process.env.ZACH, "procFAEF ENVIRONMENT")
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
@@ -21,6 +22,11 @@ require('./src/models/ParkingSpot')
 const routes = require('./routes/index')
 const app = express();
 app.use(bodyParser.json());
+app.locals = {
+  ZACH: process.env.ZACH,
+  JADEN: process.env.JADEN,
+  VLAD: process.env.VLAD,
+}
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', routes);
