@@ -25,17 +25,27 @@ export default class Parking extends React.Component {
 
   componentDidMount() {
     axios.get('/spot')
-    .then(response => {
-      let updatedAt = moment(response.data[0].updatedAt).fromNow()
-      let spots = response.data[0].spot
-      this.setState({
-        spots,
-        updatedAt
+      .then(response => {
+        let updatedAt = moment(response.data[0].updatedAt).fromNow()
+        let spots = response.data[0].spot
+        this.setState({
+          spots,
+          updatedAt
+        })
       })
-    })
-    .catch(error => {
-      console.log(error)
-    })
+      .catch(error => {
+        console.log(error)
+      })
+    axios.get('/secret')
+      .then(response => {
+        let {secret} = response.data[0]
+        this.setState({
+          secret
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
 
@@ -94,15 +104,14 @@ export default class Parking extends React.Component {
       showModal: false
     })
     let currentUser = false
-    console.log(process.env.ZACH, 'ASD;KAF')
     switch (this.state.password) {
-      case process.env.JADEN:
+      case this.state.secret.JADEN:
         currentUser = 'Jaden'
         break
-      case process.env.VLAD:
+      case this.state.secret.VLAD:
         currentUser = 'Vlad'
         break
-      case process.env.ZACH:
+      case this.state.secret.ZACH:
         currentUser = 'Zach'
         break
       default:
@@ -123,7 +132,6 @@ export default class Parking extends React.Component {
     })
     axios.post('/api/update', {spot: spots})
     .then(response => {
-      console.log('response', response)
       // this.setState({
       //   spots
       // })

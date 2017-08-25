@@ -7,10 +7,8 @@ const bodyParser = require('body-parser');
 if (process.env.NODE_ENV != 'production') {
   require('dotenv').config({ path: 'variables.env' });
 }
-console.log(process.env.NODE_ENV,'ENVIRONMENTADFASFD')
 const PORT = process.env.PORT || 8080;
 // connect to db and handle bad connections
-console.log(process.env.ZACH, "ZACH VALUE")
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
@@ -21,6 +19,8 @@ mongoose.connection.once('open', () => {
 })
 // IMPORT MODELS
 require('./src/models/ParkingSpot')
+
+require('./src/models/Secret')
 
 const routes = require('./routes/index')
 const app = express();
