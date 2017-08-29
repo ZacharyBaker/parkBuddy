@@ -114,6 +114,9 @@ export default class Parking extends React.Component {
       case this.state.secret.ZACH:
         currentUser = 'Zach'
         break
+      case this.state.secret.EMPTY:
+        currentUser = 'Empty'
+        break
       default:
         alert('🐒💩🐒💩🐒💩🐒💩Wrong Password🐒💩🐒💩🐒💩🐒💩')
     }
